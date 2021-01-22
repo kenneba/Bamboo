@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Bamboo.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bamboo
 {
@@ -23,14 +25,28 @@ namespace Bamboo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<BambooDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = "TestSession";
+                //options.Cookie.Expiration = TimeSpan.FromMinutes(245); //invalid
+                //options.IdleTimeout = TimeSpan.FromMinutes(245);
+                //options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
             if (env.IsDevelopment())
             {
+                
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -39,6 +55,7 @@ namespace Bamboo
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -46,6 +63,8 @@ namespace Bamboo
 
             app.UseAuthorization();
 
+
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

@@ -8,13 +8,18 @@ using Microsoft.EntityFrameworkCore;
 namespace Bamboo.Data
 {
     public class BambooDbContext: DbContext
+
     {
+        public BambooDbContext(DbContextOptions<BambooDbContext> options) : base(options)
+        {
+        }
+
         public DbSet<User> Users { get; set; }
 
         public DbSet<Artist> Artists { get; set; }
 
-        public BambooDbContext(DbContextOptions<BambooDbContext> options) : base(options)
-        {
-        }
+        public DbSet<Artware> Artwares { get; set; }
+
+        
     }
 }

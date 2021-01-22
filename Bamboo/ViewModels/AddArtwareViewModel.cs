@@ -5,11 +5,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bamboo.Models
+namespace Bamboo.ViewModels
 {
-    public class Artware
+    public class AddArtwareViewModel
     {
         public int ID { get; set; }
+
+        public int ArtistID {get;set;}
         public string Description { get; set; }
         [Required]
 
@@ -17,5 +19,14 @@ namespace Bamboo.Models
         [Required]
 
         public string ArtwareImage { get; set; }
+
+        public void OnGet()
+        {
+        }
+
+        public void OnPost(IFormFile file)
+        {
+            ArtwareImage = file.FileName;
+        }
     }
 }

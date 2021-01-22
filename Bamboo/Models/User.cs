@@ -12,7 +12,7 @@ namespace Bamboo.Models
         [Required]
         public string FirstName { get; set; }
         [Required]
-        public string LasttName { get; set; }
+        public string LastName { get; set; }
         [Required]
         [EmailAddress]
         public string EmailAddress { get; set; }

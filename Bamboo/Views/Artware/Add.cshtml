@@ -1,0 +1,34 @@
+﻿@model Bamboo.ViewModels.AddArtwareViewModel
+
+@{    ViewData["Title"] = "Add Artware";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Add Artware</h1>
+    <form asp-controller="Artist" asp-action="AddArtware" method="post" enctype="multipart/form-data">
+        @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price" class="control-label"></label>
+            <input asp-for="Price" type="password" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ArtwareImage" class="control-label"></label>
+            <input asp-for="ArtwareImage" type="file" class="form-control" />
+            <span asp-validation-for="ArtwareImage" class="text-danger"></span>
+        </div>
+        <div class="form-control">
+            <input type="submit" value="Add Artware" />
+        </div>
+
+
+    </form>
+
+</div>

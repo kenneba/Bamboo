@@ -7,17 +7,9 @@ using Bamboo.Models;
 
 namespace Bamboo.ViewModels
 {
-    public class AddUserViewModel
+    public class LoginUserViewModel
     {
         public int ID { get; set; }
-
-        [Required]
-        [Display(Name = "First Name")]
-        public string FirstName { get; set; }
-
-        [Required]
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
 
         [Required]
         [Display(Name = "Email Address")]
@@ -27,6 +19,6 @@ namespace Bamboo.ViewModels
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        public AddUserViewModel() { }
+        public LoginUserViewModel() { }
     }
 }
